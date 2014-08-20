@@ -20,7 +20,7 @@ to sonarqube-4.4/extensions/plugins/.
 
 # Use
 * Create a file called "sonar-project.properties" in your project's root
-directory, following the directions (here)[http://docs.codehaus.org/display/SONAR/Analyzing+with+SonarQube+Runner]
+directory, following the directions [here](http://docs.codehaus.org/display/SONAR/Analyzing+with+SonarQube+Runner)
 * Execute dscanner to create a report file. ```dscanner -S . > dscanner-report.txt```
 * Run ```sonar-runner``` in this directory to upload analysis results to the
 SonarQube server.
