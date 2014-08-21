@@ -198,6 +198,7 @@
 		<name>Confusing Logical Operator Precedence</name>
 		<description><![CDATA[
 			Checks for code where parenthesis should be used to clarify && and || expressions.
+			"a && b || c" parses as "(a && b) || c", though the code may have meant to be "a && (b || c)".
 		]]></description>
 		<severity>MAJOR</severity>
 		<status>BETA</status>
