@@ -19,6 +19,7 @@
 
 package com.economicmodeling.infrastructure.d;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,48 +49,38 @@ public class DScannerSensor implements Sensor {
 
     private final FileSystem fileSystem;
     private final ResourcePerspectives resourcePerspectives;
+    private final ObjectMapper mapper;
 
     public DScannerSensor(final FileSystem fileSystem, final ResourcePerspectives resourcePerspectives) {
         this.fileSystem = fileSystem;
         this.resourcePerspectives = resourcePerspectives;
+        mapper = new ObjectMapper();
     }
 
     @Override
     public void analyse(Project project, SensorContext sensorContext) {
         LOG.info("DScannerSensor.analyse");
         final InputFile reportFile = fileSystem.inputFile(fileSystem.predicates()
-                .hasRelativePath("./dscanner-report.txt"));
+                .hasRelativePath("./dscanner-report.json"));
         if (reportFile != null) {
             try {
-                final List<String> lines = FileUtils.readLines(reportFile.file());
-                for (String line :  lines) {
-//                    LOG.info(line);
-                    final Pattern pattern = Pattern.compile("^(.+)\\((\\d+):(\\d+)\\)\\[(\\w+)\\]: (.+)$");
-                    final Matcher matcher = pattern.matcher(line);
-                    if (matcher.matches()) {
-                        final String fileName = matcher.group(1);
-                        final String lineNumber = matcher.group(2);
-                        final String columnNumber = matcher.group(3);
-                        final String level = matcher.group(4);
-                        final String message = matcher.group(5);
-//                        LOG.info(String.format("fileName = %s\t lineNumber = %s\tcolumnNumber = %s\tlevel = %s\tmessage = %s",
-//                                fileName, lineNumber, columnNumber, level, message));
-                        final Resource resource = File.fromIOFile(
-                                fileSystem.inputFile(fileSystem.predicates().hasRelativePath(fileName)).file(),
-                                project);
-                        final Issuable issuable = resourcePerspectives.as(Issuable.class, resource);
-                        final Issue issue = issuable.newIssueBuilder()
-                                .line(Integer.decode(lineNumber))
-                                .message(message)
-                                .severity(Severity.INFO)
-                                .ruleKey(RuleKey.of("dscanner", "dscanner"))
-                                .build();
-                        issuable.addIssue(issue);
-                        LOG.info("Issue added for " + line);
-                    }
+                final DScannerReport report = mapper.readValue(reportFile.file(), DScannerReport.class);
+                reportFile.file();
+                for (final DScannerIssue scannerIssue : report.issues)
+                {
+                    final Resource resource = File.fromIOFile(
+                            fileSystem.inputFile(fileSystem.predicates().hasRelativePath(scannerIssue.fileName)).file(),
+                            project);
+                    final Issuable issuable = resourcePerspectives.as(Issuable.class, resource);
+                    final Issue issue = issuable.newIssueBuilder()
+                            .line((int) scannerIssue.line)
+                            .message(scannerIssue.message)
+                            .ruleKey(RuleKey.of("dscanner", scannerIssue.key))
+                            .build();
+                    issuable.addIssue(issue);
                 }
             } catch (IOException e) {
-                LOG.error("Could not open dscanner-report.txt", e);
+                LOG.error("Could not open dscanner-report.json", e);
             }
         }
     }

@@ -19,21 +19,27 @@
 
 package com.economicmodeling.infrastructure.d;
 
-import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.server.rule.RulesDefinition;
+import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
+
+import java.io.InputStreamReader;
 
 /**
  * @author Brian Schott
  */
 public class DScannerRules implements RulesDefinition {
+
+    RulesDefinitionXmlLoader xmlLoader;
+
+    public DScannerRules(RulesDefinitionXmlLoader xmlLoader) {
+        this.xmlLoader = xmlLoader;
+    }
+
     @Override
     public void define(Context context) {
         NewRepository repository = context.createRepository("dscanner", "d").setName("D Scanner");
-
-        NewRule rule = repository.createRule("dscanner")
-                .setName("Generic dscanner rule")
-                .setHtmlDescription("Generic dscanner rule")
-                .setStatus(RuleStatus.BETA);
+        xmlLoader.load(repository, new InputStreamReader(getClass().getResourceAsStream(
+                "dscanner-rules.xml")));
         repository.done();
     }
 }

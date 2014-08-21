@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rules>
+	<rule>
+		<key>dscanner.confusing.brexp</key>
+		<name>Confusing BrExp</name>
+		<description><![CDATA[
+			Catches use of the assembly br expression that can be confused with an array index expression.
+			See <a href="https://issues.dlang.org/show_bug.cgi?id=9738">Issue 9738</a>.
+		]]></description>
+		<severity>MAJOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.confusing.builtin_property_names</key>
+		<name>Built-in Property Names</name>
+		<description><![CDATA[
+			Catches member variables and methods whose names conflict with built-in properties.
+			See <a href="https://issues.dlang.org/show_bug.cgi?id=7066">Issue 7066</a>.
+		]]></description>
+		<severity>CRITICAL</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.confusing.struct_constructor_default_args</key>
+		<name>Struct Constructor with Only Default Arguments</name>
+		<description><![CDATA[
+			Catches struct constructors that only have default arguments. Struct
+			constructors will never be called with their default arguments in D.
+			See <a href="https://issues.dlang.org/show_bug.cgi?id=7066">Issue 7066</a>.
+		]]></description>
+		<severity>CRITICAL</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.deprecated.delete_keyword</key>
+		<name>Delete Keyword is Deprecated</name>
+		<description><![CDATA[
+			Catches uses of the "delete" keyword.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.unnecessary.duplicate_attribute</key>
+		<name>Duplicated attributes on a declaration</name>
+		<description><![CDATA[
+			Catches duplicate attributes on declarations
+		]]></description>
+		<severity>MAJOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.performance.enum_array_literal</key>
+		<name>Enum Array Literals in Structs</name>
+		<description><![CDATA[
+			Array literals declared as "enum" can cause huge amounts of
+			unnecessary run-time allocation. Use "static immutable" instead.
+		]]></description>
+		<severity>CRITICAL</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.deprecated.floating_point_operators</key>
+		<name>Deprecated Floating-Point Operators</name>
+		<description><![CDATA[
+			Many of the old floating-point comparison operators are now deprecated.
+		]]></description>
+		<severity>MAJOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.bugs.if_else_same</key>
+		<name>If and Else Identical</name>
+		<description><![CDATA[
+			Catches "if" statements where the "then" and "else" conditions are
+			the same.
+		]]></description>
+		<severity>BLOCKER</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.bugs.self_assignment</key>
+		<name>Self-Assignment</name>
+		<description><![CDATA[
+			Catches expressions where the left side of an assignment operator is
+			the same as the right side.
+		]]></description>
+		<severity>BLOCKER</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.bugs.logic_operator_operands</key>
+		<name>Useless Logical Operator</name>
+		<description><![CDATA[
+			Catches expressions where the left side of a logical operator is the
+			same as the right side.
+		]]></description>
+		<severity>BLOCKER</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.suspicious.length_subtraction</key>
+		<name>Length Subtraction</name>
+		<description><![CDATA[
+			Flags code where the programmer may be triggering an integer
+			underflow with array or container lengths. May be a false positive.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.style.number_literals</key>
+		<name>Number Literal Style</name>
+		<description><![CDATA[
+			Flags numeric literals where underscores could improve readability.
+		]]></description>
+		<severity>INFO</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.suspicious.object_const</key>
+		<name>Non-Const Operator Overloads</name>
+		<description><![CDATA[
+			Checks that opCmp, toHash, opEquals, and toString are declared const
+			in struct, interface, class, and union declarations.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.suspicious.incomplete_operator_overloading</key>
+		<name>Incomplete Operator Overloading</name>
+		<description><![CDATA[
+			Checks that opCmp, toHash, and opEquals are either all declared or
+			none of them are declared.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.suspicious.catch_em_all</key>
+		<name>Pokémon Exception Handling</name>
+		<description><![CDATA[
+			Checks for code that catches Throwable or Error.
+		]]></description>
+		<severity>MAJOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.bugs.backwards_slices</key>
+		<name>Backwards Slice Expressions</name>
+		<description><![CDATA[
+			Catches code where the left side of a slice expression is larger than the right.
+		]]></description>
+		<severity>MAJOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.style.phobos_naming_convention</key>
+		<name>Phobos Naming Conventions</name>
+		<description><![CDATA[
+			Catches code where the Phobos naming conventions are violated
+		]]></description>
+		<severity>INFO</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.suspicious.unused_variable</key>
+		<name>Unused Variables</name>
+		<description><![CDATA[
+			Catches code where variables are not used. May have false positives
+			in the presence of mixin statements.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.suspicious.unused_parameter</key>
+		<name>Unused Parameters</name>
+		<description><![CDATA[
+			Catches code where parameters are not used. May have false positives
+			in the presence of mixin statements.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.syntax</key>
+		<name>Syntax Warnings</name>
+		<description><![CDATA[
+			Misc. sytnax warnings detected by the parser.
+		]]></description>
+		<severity>MAJOR</severity>
+		<status>BETA</status>
+	</rule>
+</rules>

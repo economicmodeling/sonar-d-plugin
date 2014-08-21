@@ -19,21 +19,25 @@
 
 package com.economicmodeling.infrastructure.d;
 
-import org.sonar.api.resources.AbstractLanguage;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Class that defines the D language
+ * Object that maps to an issue in a D Scanner report
  * @author Brian Schott
  */
-public class DLanguage extends AbstractLanguage {
+public class DScannerIssue {
+    @JsonProperty("key")
+    public String key;
 
-    public DLanguage() {
-        super("d", "D");
-    }
+    @JsonProperty("message")
+    public String message;
 
-    public String[] getFileSuffixes() {
-        return suffixes;
-    }
+    @JsonProperty("line")
+    public long line;
 
-    private static final String[] suffixes = { "d", "di", "json" };
+    @JsonProperty("column")
+    public long column;
+
+    @JsonProperty("fileName")
+    public String fileName;
 }
