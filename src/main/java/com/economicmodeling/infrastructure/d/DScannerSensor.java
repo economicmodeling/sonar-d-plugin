@@ -58,14 +58,19 @@ public class DScannerSensor implements Sensor {
     }
 
     @Override
+    public String toString() {
+        return "DScannerSensor";
+    }
+
+    @Override
     public void analyse(Project project, SensorContext sensorContext) {
-        LOG.info("DScannerSensor.analyse");
         final InputFile reportFile = fileSystem.inputFile(fileSystem.predicates()
                 .hasRelativePath("./dscanner-report.json"));
         if (reportFile != null) {
+            LOG.info("Analyzing dscanner-report.json");
             try {
                 final DScannerReport report = mapper.readValue(reportFile.file(), DScannerReport.class);
-                reportFile.file();
+                LOG.info("Found " + String.valueOf(report.issues.size()) + " issues.");
                 for (final DScannerIssue scannerIssue : report.issues)
                 {
                     final Resource resource = File.fromIOFile(
