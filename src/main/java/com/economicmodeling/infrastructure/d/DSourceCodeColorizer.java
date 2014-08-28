@@ -19,24 +19,29 @@
 
 package com.economicmodeling.infrastructure.d;
 
-import org.sonar.api.SonarPlugin;
+import org.sonar.api.web.CodeColorizerFormat;
+import org.sonar.colorizer.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is the entry point for all extensions
+ * @author Brian Schott
  */
-public final class DLanguagePlugin extends SonarPlugin {
+public class DSourceCodeColorizer extends CodeColorizerFormat {
+    private static final String CLOSE_TAG = "</span>";
 
-    // This is where you're going to declare all your Sonar extensions
-    public List getExtensions() {
-        return Arrays.asList(
-                DLanguage.class,
-                DScannerSensor.class,
-                DScannerRules.class,
-                DLexer.class,
-                DSourceCodeColorizer.class
-        );
+    public DSourceCodeColorizer() {
+        super("d");
+    }
+
+    @Override
+    public List<Tokenizer> getTokenizers() {
+        List<Tokenizer> tokenizers = new ArrayList<Tokenizer>();
+        tokenizers.add(new CDocTokenizer("<span class=\"cd\">", CLOSE_TAG));
+        tokenizers.add(new CppDocTokenizer("<span class=\"cppd\">", CLOSE_TAG));
+        tokenizers.add(new KeywordsTokenizer("<span class=\"k\">", CLOSE_TAG, DKeywords.keywordValues()));
+        tokenizers.add(new LiteralTokenizer("<span class=\"s\">", CLOSE_TAG));
+        return tokenizers;
     }
 }

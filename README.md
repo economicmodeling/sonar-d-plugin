@@ -28,7 +28,8 @@ sonar.projectVersion=1.0
 sonar.sourceEncoding=UTF-8
 sonar.sources=.</pre>
 </li>
-<li>Execute dscanner to create a report file. <code>dscanner --report . > dscanner-report.json</code></li>
+<li>Execute dscanner to create a report file. <code>dscanner --report . > dscanner-report.json</code>. Make sure that
+dscanner-report.json is in the directory specified by "sonar.sources".</li>
 <li>Run <code>sonar-runner</code> in this directory to upload analysis results to the
 SonarQube server.</li>
 </ul>

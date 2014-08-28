@@ -20,13 +20,14 @@
 package com.economicmodeling.infrastructure.d;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.io.FileUtils;
+import com.sun.corba.se.spi.orbutil.fsm.Input;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
 import org.sonar.api.batch.SensorContext;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.component.ResourcePerspectives;
+import org.sonar.api.config.Settings;
 import org.sonar.api.issue.Issuable;
 import org.sonar.api.issue.Issue;
 import org.sonar.api.resources.File;
@@ -34,12 +35,8 @@ import org.sonar.api.resources.Project;
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.resources.Resource;
 import org.sonar.api.rule.RuleKey;
-import org.sonar.api.rule.Severity;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Brian Schott
@@ -50,10 +47,12 @@ public class DScannerSensor implements Sensor {
     private final FileSystem fileSystem;
     private final ResourcePerspectives resourcePerspectives;
     private final ObjectMapper mapper;
+    private final Settings settings;
 
-    public DScannerSensor(final FileSystem fileSystem, final ResourcePerspectives resourcePerspectives) {
+    public DScannerSensor(final FileSystem fileSystem, final ResourcePerspectives resourcePerspectives, final Settings settings) {
         this.fileSystem = fileSystem;
         this.resourcePerspectives = resourcePerspectives;
+        this.settings = settings;
         mapper = new ObjectMapper();
     }
 
@@ -64,8 +63,12 @@ public class DScannerSensor implements Sensor {
 
     @Override
     public void analyse(Project project, SensorContext sensorContext) {
+        final String sources = settings.getProperties().get("sonar.sources");
         final InputFile reportFile = fileSystem.inputFile(fileSystem.predicates()
-                .hasRelativePath("./dscanner-report.json"));
+                .hasRelativePath(sources + "/dscanner-report.json"));
+        for (InputFile file : fileSystem.inputFiles(fileSystem.predicates().all())) {
+            LOG.info(file.absolutePath());
+        }
         if (reportFile != null) {
             LOG.info("Analyzing dscanner-report.json");
             try {
@@ -73,9 +76,12 @@ public class DScannerSensor implements Sensor {
                 LOG.info("Found " + String.valueOf(report.issues.size()) + " issues.");
                 for (final DScannerIssue scannerIssue : report.issues)
                 {
-                    final Resource resource = File.fromIOFile(
-                            fileSystem.inputFile(fileSystem.predicates().hasRelativePath(scannerIssue.fileName)).file(),
-                            project);
+                    LOG.info(scannerIssue.fileName);
+                    final InputFile inputFile = fileSystem.inputFile(fileSystem.predicates().hasRelativePath(scannerIssue.fileName));
+                    if (inputFile == null) {
+                        LOG.info("Could not find file " + scannerIssue.fileName);
+                    }
+                    final Resource resource = File.fromIOFile(inputFile.file(), project);
                     final Issuable issuable = resourcePerspectives.as(Issuable.class, resource);
                     final Issue issue = issuable.newIssueBuilder()
                             .line((int) scannerIssue.line)
@@ -85,8 +91,10 @@ public class DScannerSensor implements Sensor {
                     issuable.addIssue(issue);
                 }
             } catch (IOException e) {
-                LOG.error("Could not open dscanner-report.json", e);
+                LOG.error("Could not open file", e);
             }
+        } else {
+            LOG.error("Could not open dscanner-report.json");
         }
     }
 

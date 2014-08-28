@@ -19,24 +19,45 @@
 
 package com.economicmodeling.infrastructure.d;
 
-import org.sonar.api.SonarPlugin;
-
-import java.util.Arrays;
-import java.util.List;
+import com.sonar.sslr.api.AstNode;
+import com.sonar.sslr.api.TokenType;
 
 /**
- * This class is the entry point for all extensions
+ * @author Brian Schott
  */
-public final class DLanguagePlugin extends SonarPlugin {
+public enum DTokenType implements TokenType {
+    SPECIALTOKENSEQUENCE,
+    COMMENT,
+    IDENTIFIER,
+    SCRIPTLINE,
+    WHITESPACE,
+    DOUBLELITERAL,
+    FLOATLITERAL,
+    IDOUBLELITERAL,
+    IFLOATLITERAL,
+    INTLITERAL,
+    LONGLITERAL,
+    REALLITERAL,
+    IREALLITERAL,
+    UINTLITERAL,
+    ULONGLITERAL,
+    CHARACTERLITERAL,
+    DSTRINGLITERAL,
+    STRINGLITERAL,
+    WSTRINGLITERAL;
 
-    // This is where you're going to declare all your Sonar extensions
-    public List getExtensions() {
-        return Arrays.asList(
-                DLanguage.class,
-                DScannerSensor.class,
-                DScannerRules.class,
-                DLexer.class,
-                DSourceCodeColorizer.class
-        );
+    @Override
+    public String getName() {
+        return name();
     }
-}
+
+    @Override
+    public String getValue() {
+        return name();
+    }
+
+    @Override
+    public boolean hasToBeSkippedFromAst(AstNode astNode) {
+        return false;
+    }
+    }
