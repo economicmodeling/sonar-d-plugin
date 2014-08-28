@@ -66,9 +66,9 @@ public class DScannerSensor implements Sensor {
         final String sources = settings.getProperties().get("sonar.sources");
         final InputFile reportFile = fileSystem.inputFile(fileSystem.predicates()
                 .hasRelativePath(sources + "/dscanner-report.json"));
-        for (InputFile file : fileSystem.inputFiles(fileSystem.predicates().all())) {
-            LOG.info(file.absolutePath());
-        }
+//        for (InputFile file : fileSystem.inputFiles(fileSystem.predicates().all())) {
+//            LOG.info(file.absolutePath());
+//        }
         if (reportFile != null) {
             LOG.info("Analyzing dscanner-report.json");
             try {
@@ -76,7 +76,7 @@ public class DScannerSensor implements Sensor {
                 LOG.info("Found " + String.valueOf(report.issues.size()) + " issues.");
                 for (final DScannerIssue scannerIssue : report.issues)
                 {
-                    LOG.info(scannerIssue.fileName);
+                    LOG.info("Saving issues for " + scannerIssue.fileName);
                     final InputFile inputFile = fileSystem.inputFile(fileSystem.predicates().hasRelativePath(scannerIssue.fileName));
                     if (inputFile == null) {
                         LOG.info("Could not find file " + scannerIssue.fileName);
