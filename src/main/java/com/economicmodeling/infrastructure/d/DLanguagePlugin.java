@@ -36,7 +36,8 @@ public final class DLanguagePlugin extends SonarPlugin {
                 DScannerSensor.class,
                 DScannerRules.class,
                 DLexer.class,
-                DSourceCodeColorizer.class
+                DSourceCodeColorizer.class,
+                DMetrics.class
         );
     }
 }

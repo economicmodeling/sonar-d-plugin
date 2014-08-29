@@ -30,6 +30,8 @@ import org.sonar.api.component.ResourcePerspectives;
 import org.sonar.api.config.Settings;
 import org.sonar.api.issue.Issuable;
 import org.sonar.api.issue.Issue;
+import org.sonar.api.measures.CoreMetrics;
+import org.sonar.api.measures.MetricFinder;
 import org.sonar.api.resources.File;
 import org.sonar.api.resources.Project;
 import org.sonar.api.batch.fs.FileSystem;
@@ -66,20 +68,25 @@ public class DScannerSensor implements Sensor {
         final String sources = settings.getProperties().get("sonar.sources");
         final InputFile reportFile = fileSystem.inputFile(fileSystem.predicates()
                 .hasRelativePath(sources + "/dscanner-report.json"));
-//        for (InputFile file : fileSystem.inputFiles(fileSystem.predicates().all())) {
-//            LOG.info(file.absolutePath());
-//        }
         if (reportFile != null) {
             LOG.info("Analyzing dscanner-report.json");
             try {
                 final DScannerReport report = mapper.readValue(reportFile.file(), DScannerReport.class);
+                sensorContext.saveMeasure(CoreMetrics.CLASSES, report.classCount);
+                sensorContext.saveMeasure(CoreMetrics.FUNCTIONS, report.functionCount);
+                sensorContext.saveMeasure(CoreMetrics.LINES, report.lineOfCodeCount);
+                sensorContext.saveMeasure(DMetrics.STRUCTS, report.structCount);
+                sensorContext.saveMeasure(DMetrics.TEMPLATES, report.templateCount);
+                sensorContext.saveMeasure(DMetrics.INTERFACES, report.interfaceCount);
+                sensorContext.saveMeasure(CoreMetrics.STATEMENTS, report.statementCount);
+                //sensorContext.saveMeasure(CoreMetrics.PUBLIC_UNDOCUMENTED_API, report.undocumentedPublicSymbols);
                 LOG.info("Found " + String.valueOf(report.issues.size()) + " issues.");
                 for (final DScannerIssue scannerIssue : report.issues)
                 {
-                    LOG.info("Saving issues for " + scannerIssue.fileName);
                     final InputFile inputFile = fileSystem.inputFile(fileSystem.predicates().hasRelativePath(scannerIssue.fileName));
                     if (inputFile == null) {
                         LOG.info("Could not find file " + scannerIssue.fileName);
+                        continue;
                     }
                     final Resource resource = File.fromIOFile(inputFile.file(), project);
                     final Issuable issuable = resourcePerspectives.as(Issuable.class, resource);
@@ -99,6 +106,6 @@ public class DScannerSensor implements Sensor {
     }
 
     public boolean shouldExecuteOnProject(Project project) {
-        return true;
+        return fileSystem.files(fileSystem.predicates().hasLanguage("d")).iterator().hasNext();
     }
 }

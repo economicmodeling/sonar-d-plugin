@@ -30,4 +30,12 @@ import java.util.List;
 public class DScannerReport {
     @JsonProperty("issues")
     public List<DScannerIssue> issues;
+    public Double classCount;
+    public Double interfaceCount;
+    public Double functionCount;
+    public Double templateCount;
+    public Double structCount;
+    public Double lineOfCodeCount;
+    public Double undocumentedPublicSymbols;
+    public Double statementCount;
 }
