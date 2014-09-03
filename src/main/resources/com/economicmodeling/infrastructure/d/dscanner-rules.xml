@@ -203,13 +203,22 @@
 		<severity>MAJOR</severity>
 		<status>BETA</status>
 	</rule>
-    <rule>
-        <key>dscanner.style.undocumented_declaration</key>
-        <name>Undocumented Public Symbols</name>
-        <description><![CDATA[
+	<rule>
+		<key>dscanner.style.undocumented_declaration</key>
+		<name>Undocumented Public Symbols</name>
+		<description><![CDATA[
 			Checks for code where public declarations have no documentation comment.
 		]]></description>
-        <severity>INFO</severity>
-        <status>BETA</status>
-    </rule>
+		<severity>INFO</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.confusing.function_attributes</key>
+		<name>Function Attribute Placement</name>
+		<description><![CDATA[
+			Prefer <code>int getStuff() const {}</code> to <code>const int getStuff() {}</code>
+		]]></description>
+		<severity>INFO</severity>
+		<status>BETA</status>
+	</rule>
 </rules>
