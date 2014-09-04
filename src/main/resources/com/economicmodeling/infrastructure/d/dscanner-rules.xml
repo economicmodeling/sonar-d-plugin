@@ -221,4 +221,13 @@
 		<severity>INFO</severity>
 		<status>BETA</status>
 	</rule>
+	<rule>
+		<key>dscanner.suspicious.comma_expression</key>
+		<name>Comma Expression</name>
+		<description><![CDATA[
+			The comma expression is confusing. Avoid its use.
+		]]></description>
+		<severity>INFO</severity>
+		<status>BETA</status>
+	</rule>
 </rules>
