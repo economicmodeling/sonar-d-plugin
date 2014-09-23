@@ -230,4 +230,17 @@
 		<severity>INFO</severity>
 		<status>BETA</status>
 	</rule>
+	<rule>
+		<key>dscanner.suspicious.local_imports</key>
+		<name>Local Imports</name>
+		<description><![CDATA[
+			Non-selective local imports can cause symbols from the imported
+			module to shadow symbols in the local scope with no warning. Use a
+			selective import to avoid this. See <a href="http://forum.dlang.org/thread/lvsegb$8cf$1@digitalmars.com">
+			this forum thread</a> for details.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+
 </rules>
