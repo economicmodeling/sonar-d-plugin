@@ -20,7 +20,6 @@
 package com.economicmodeling.infrastructure.d;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.corba.se.spi.orbutil.fsm.Input;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sonar.api.batch.Sensor;
@@ -39,6 +38,8 @@ import org.sonar.api.resources.Resource;
 import org.sonar.api.rule.RuleKey;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Brian Schott
@@ -50,6 +51,7 @@ public class DScannerSensor implements Sensor {
     private final ResourcePerspectives resourcePerspectives;
     private final ObjectMapper mapper;
     private final Settings settings;
+    private final Set<String> reportedMissingFiles = new HashSet<>();
 
     public DScannerSensor(final FileSystem fileSystem, final ResourcePerspectives resourcePerspectives, final Settings settings) {
         this.fileSystem = fileSystem;
@@ -84,7 +86,8 @@ public class DScannerSensor implements Sensor {
                 for (final DScannerIssue scannerIssue : report.issues)
                 {
                     final InputFile inputFile = fileSystem.inputFile(fileSystem.predicates().hasRelativePath(scannerIssue.fileName));
-                    if (inputFile == null) {
+                    if (inputFile == null && !reportedMissingFiles.contains(scannerIssue.fileName)) {
+                        reportedMissingFiles.add(scannerIssue.fileName);
                         LOG.info("Could not find file " + scannerIssue.fileName);
                         continue;
                     }
