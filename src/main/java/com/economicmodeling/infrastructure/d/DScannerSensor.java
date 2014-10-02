@@ -86,9 +86,11 @@ public class DScannerSensor implements Sensor {
                 for (final DScannerIssue scannerIssue : report.issues)
                 {
                     final InputFile inputFile = fileSystem.inputFile(fileSystem.predicates().hasRelativePath(scannerIssue.fileName));
-                    if (inputFile == null && !reportedMissingFiles.contains(scannerIssue.fileName)) {
-                        reportedMissingFiles.add(scannerIssue.fileName);
-                        LOG.info("Could not find file " + scannerIssue.fileName);
+                    if (inputFile == null) {
+                        if (!reportedMissingFiles.contains(scannerIssue.fileName)) {
+                            reportedMissingFiles.add(scannerIssue.fileName);
+                            LOG.info("Could not find file " + scannerIssue.fileName);
+                        }
                         continue;
                     }
                     final Resource resource = File.fromIOFile(inputFile.file(), project);
