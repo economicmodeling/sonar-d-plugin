@@ -242,5 +242,13 @@
 		<severity>MINOR</severity>
 		<status>BETA</status>
 	</rule>
-
+	<rule>
+		<key>dscanner.suspicious.could_be_immutable</key>
+		<name>Could be immutable</name>
+		<description><![CDATA[
+			Checks for variables that could have been declared 'immutable'.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
 </rules>
