@@ -175,6 +175,16 @@
 		<status>BETA</status>
 	</rule>
 	<rule>
+		<key>dscanner.suspicious.unused_label</key>
+		<name>Unused Labels</name>
+		<description><![CDATA[
+			Catches code where labels are present but not the target of a <code>goto</code> or <code>break</code>.
+			May have false positives in the presence of mixin statements.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
 		<key>dscanner.suspicious.unused_parameter</key>
 		<name>Unused Parameters</name>
 		<description><![CDATA[
@@ -248,6 +258,34 @@
 		<description><![CDATA[
 			Checks for unmodified variables that could have been declared 'const' or
 			'immutable'.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.suspicious.redundant_parens</key>
+		<name>Redundant parenthesis</name>
+		<description><![CDATA[
+			Checks for redundant parenthesis.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.confusing.argument_parameter_mismatch</key>
+		<name>Mismatched function arguments</name>
+		<description><![CDATA[
+			Checks for arguments whose name matches a parameter, but is not in the same place in the argument list
+			that it is in the parameter list. For example: <code> int doStuff(int a, int b); int a, b; doStuff(b, a);</code>
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<key>dscanner.suspicious.label_var_same_name</key>
+		<name>Labels with the same name as variables</name>
+		<description><![CDATA[
+			Checks for labels that have the same name as variables.
 		]]></description>
 		<severity>MINOR</severity>
 		<status>BETA</status>
