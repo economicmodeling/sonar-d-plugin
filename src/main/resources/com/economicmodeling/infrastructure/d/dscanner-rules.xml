@@ -353,13 +353,4 @@
 		<severity>MINOR</severity>
 		<status>BETA</status>
 	</rule>
-	<rule>
-		<key>dscanner.confusing.argument_parameter_mismatch</key>
-		<name>Mismatched Argument Names</name>
-		<description><![CDATA[
-			Checks for mismatched argument and parameter names.
-		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
 </rules>
