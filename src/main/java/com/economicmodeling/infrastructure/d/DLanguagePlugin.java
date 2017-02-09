@@ -19,25 +19,20 @@
 
 package com.economicmodeling.infrastructure.d;
 
-import org.sonar.api.SonarPlugin;
-
-import java.util.Arrays;
-import java.util.List;
+import org.sonar.api.Plugin;
 
 /**
  * This class is the entry point for all extensions
  */
-public final class DLanguagePlugin extends SonarPlugin {
+public final class DLanguagePlugin implements Plugin {
 
-    // This is where you're going to declare all your Sonar extensions
-    public List getExtensions() {
-        return Arrays.asList(
-                DLanguage.class,
+    @Override
+    public void define(Context context) {
+        context.addExtensions(DLanguage.class,
                 DScannerSensor.class,
                 DScannerRules.class,
                 DLexer.class,
                 DSourceCodeColorizer.class,
-                DMetrics.class
-        );
+                DMetrics.class);
     }
 }

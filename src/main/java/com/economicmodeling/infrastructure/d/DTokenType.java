@@ -19,7 +19,6 @@
 
 package com.economicmodeling.infrastructure.d;
 
-import com.sonar.sslr.api.AstNode;
 import com.sonar.sslr.api.TokenType;
 
 /**
