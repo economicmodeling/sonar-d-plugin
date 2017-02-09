@@ -19,7 +19,6 @@
 
 package com.economicmodeling.infrastructure.d;
 
-import org.apache.commons.io.IOUtils;
 import org.sonar.api.server.rule.RulesDefinition;
 import org.sonar.api.server.rule.RulesDefinitionXmlLoader;
 import org.sonar.api.utils.log.Logger;
@@ -46,13 +45,6 @@ public class DScannerRules implements RulesDefinition {
         NewRepository repository = context
                 .createRepository("dscanner", "d")
                 .setName("D-Scanner");
-
-        StringWriter writer = new StringWriter();
-        try {
-            IOUtils.copy(getClass().getResourceAsStream("dscanner-rules.xml"), writer);
-        } catch (IOException e) {
-        }
-        LOG.error(writer.toString());
 
         xmlLoader.load(repository, getClass().getResourceAsStream("dscanner-rules.xml"),
                 StandardCharsets.UTF_8);
