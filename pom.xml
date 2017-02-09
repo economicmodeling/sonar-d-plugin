@@ -6,18 +6,22 @@
     <groupId>com.economicmodeling.infrastructure</groupId>
     <artifactId>sonar-d-plugin</artifactId>
     <version>0.1-SNAPSHOT</version>
-
+    <packaging>sonar-plugin</packaging>
     <name>Sonar D Plugin</name>
     <description>Plugin for the D programming language</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <sonar.buildVersion>6.2.1</sonar.buildVersion>
+        <sonar.buildVersion>6.2</sonar.buildVersion>
         <jdk.min.version>1.8</jdk.min.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
         <dependency>
             <groupId>org.sonarsource.sonarqube</groupId>
             <artifactId>sonar-plugin-api</artifactId>
@@ -43,6 +47,11 @@
             <groupId>org.sonarsource.sslr</groupId>
             <artifactId>sslr-core</artifactId>
             <version>1.21</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
         </dependency>
         <!-- unit tests -->
         <dependency>
@@ -104,8 +113,9 @@
                 <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
                 <artifactId>sonar-packaging-maven-plugin</artifactId>
                 <extensions>true</extensions>
+                <version>1.17</version>
                 <configuration>
-                    <pluginClass></pluginClass>
+                    <pluginClass>com.economicmodeling.infrastructure.d.DLanguagePlugin</pluginClass>
                 </configuration>
             </plugin>
         </plugins>

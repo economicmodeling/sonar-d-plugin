@@ -31,6 +31,7 @@ public class DLanguage extends AbstractLanguage {
         super("d", "D");
     }
 
+    @Override
     public String[] getFileSuffixes() {
         return suffixes;
     }

@@ -1,397 +1,433 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rules>
-	<rule>
-		<key>dscanner.confusing.brexp</key>
-		<name>Confusing BrExp</name>
-		<description><![CDATA[
+    <rule>
+        <key>dscanner.confusing.brexp</key>
+        <name>Confusing BrExp</name>
+        <description><![CDATA[
 			Catches use of the assembly br expression that can be confused with an array index expression.
 			See <a href="https://issues.dlang.org/show_bug.cgi?id=9738">Issue 9738</a>.
 		]]></description>
-		<severity>MAJOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.confusing.builtin_property_names</key>
-		<name>Built-in Property Names</name>
-		<description><![CDATA[
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.confusing.builtin_property_names</key>
+        <name>Built-in Property Names</name>
+        <description><![CDATA[
 			Catches member variables and methods whose names conflict with built-in properties.
 			See <a href="https://issues.dlang.org/show_bug.cgi?id=7066">Issue 7066</a>.
 		]]></description>
-		<severity>CRITICAL</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.confusing.struct_constructor_default_args</key>
-		<name>Struct Constructor with Only Default Arguments</name>
-		<description><![CDATA[
+        <severity>CRITICAL</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.confusing.struct_constructor_default_args</key>
+        <name>Struct Constructor with Only Default Arguments</name>
+        <description><![CDATA[
 			Catches struct constructors that only have default arguments. Struct
 			constructors will never be called with their default arguments in D.
 			See <a href="https://issues.dlang.org/show_bug.cgi?id=7066">Issue 7066</a>.
 		]]></description>
-		<severity>CRITICAL</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.deprecated.delete_keyword</key>
-		<name>Delete Keyword is Deprecated</name>
-		<description><![CDATA[
+        <severity>CRITICAL</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.deprecated.delete_keyword</key>
+        <name>Delete Keyword is Deprecated</name>
+        <description><![CDATA[
 			Catches uses of the "delete" keyword.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.unnecessary.duplicate_attribute</key>
-		<name>Duplicated attributes on a declaration</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.unnecessary.duplicate_attribute</key>
+        <name>Duplicated attributes on a declaration</name>
+        <description><![CDATA[
 			Catches duplicate attributes on declarations
 		]]></description>
-		<severity>MAJOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.performance.enum_array_literal</key>
-		<name>Enum Array Literals in Structs</name>
-		<description><![CDATA[
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.performance.enum_array_literal</key>
+        <name>Enum Array Literals in Structs</name>
+        <description><![CDATA[
 			Array literals declared as "enum" can cause huge amounts of
 			unnecessary run-time allocation. Use "static immutable" instead.
 		]]></description>
-		<severity>CRITICAL</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.deprecated.floating_point_operators</key>
-		<name>Deprecated Floating-Point Operators</name>
-		<description><![CDATA[
+        <severity>CRITICAL</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.deprecated.floating_point_operators</key>
+        <name>Deprecated Floating-Point Operators</name>
+        <description><![CDATA[
 			Many of the old floating-point comparison operators are now deprecated.
 		]]></description>
-		<severity>MAJOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.bugs.if_else_same</key>
-		<name>If and Else Identical</name>
-		<description><![CDATA[
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.bugs.if_else_same</key>
+        <name>If and Else Identical</name>
+        <description><![CDATA[
 			Catches "if" statements where the "then" and "else" conditions are
 			the same.
 		]]></description>
-		<severity>BLOCKER</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.bugs.self_assignment</key>
-		<name>Self-Assignment</name>
-		<description><![CDATA[
+        <severity>BLOCKER</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.bugs.self_assignment</key>
+        <name>Self-Assignment</name>
+        <description><![CDATA[
 			Catches expressions where the left side of an assignment operator is
 			the same as the right side.
 		]]></description>
-		<severity>BLOCKER</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.bugs.logic_operator_operands</key>
-		<name>Useless Logical Operator</name>
-		<description><![CDATA[
+        <severity>BLOCKER</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.bugs.logic_operator_operands</key>
+        <name>Useless Logical Operator</name>
+        <description><![CDATA[
 			Catches expressions where the left side of a logical operator is the
 			same as the right side.
 		]]></description>
-		<severity>BLOCKER</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.length_subtraction</key>
-		<name>Length Subtraction</name>
-		<description><![CDATA[
+        <severity>BLOCKER</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.length_subtraction</key>
+        <name>Length Subtraction</name>
+        <description><![CDATA[
 			Flags code where the programmer may be triggering an integer
 			underflow with array or container lengths. May be a false positive.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.style.number_literals</key>
-		<name>Number Literal Style</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.style.number_literals</key>
+        <name>Number Literal Style</name>
+        <description><![CDATA[
 			Flags numeric literals where underscores could improve readability.
 		]]></description>
-		<severity>INFO</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.object_const</key>
-		<name>Non-Const Operator Overloads</name>
-		<description><![CDATA[
+        <severity>INFO</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.object_const</key>
+        <name>Non-Const Operator Overloads</name>
+        <description><![CDATA[
 			Checks that opCmp, toHash, opEquals, and toString are declared const
 			in struct, interface, class, and union declarations.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.incomplete_operator_overloading</key>
-		<name>Incomplete Operator Overloading</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.incomplete_operator_overloading</key>
+        <name>Incomplete Operator Overloading</name>
+        <description><![CDATA[
 			Checks that opCmp, toHash, and opEquals are either all declared or
 			none of them are declared.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.catch_em_all</key>
-		<name>Pokémon Exception Handling</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.catch_em_all</key>
+        <name>Pokémon Exception Handling</name>
+        <description><![CDATA[
 			Checks for code that catches Throwable or Error.
 		]]></description>
-		<severity>MAJOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.bugs.backwards_slices</key>
-		<name>Backwards Slice Expressions</name>
-		<description><![CDATA[
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.bugs.backwards_slices</key>
+        <name>Backwards Slice Expressions</name>
+        <description><![CDATA[
 			Catches code where the left side of a slice expression is larger than the right.
 		]]></description>
-		<severity>MAJOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.style.phobos_naming_convention</key>
-		<name>Phobos Naming Conventions</name>
-		<description><![CDATA[
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.style.phobos_naming_convention</key>
+        <name>Phobos Naming Conventions</name>
+        <description><![CDATA[
 			Catches code where the Phobos naming conventions are violated
 		]]></description>
-		<severity>INFO</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.unused_variable</key>
-		<name>Unused Variables</name>
-		<description><![CDATA[
+        <severity>INFO</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.unused_variable</key>
+        <name>Unused Variables</name>
+        <description><![CDATA[
 			Catches code where variables are not used. May have false positives
 			in the presence of mixin statements.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.unused_label</key>
-		<name>Unused Labels</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.unused_label</key>
+        <name>Unused Labels</name>
+        <description><![CDATA[
 			Catches code where labels are present but not the target of a <code>goto</code> or <code>break</code>.
 			May have false positives in the presence of mixin statements.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.unused_parameter</key>
-		<name>Unused Parameters</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.unused_parameter</key>
+        <name>Unused Parameters</name>
+        <description><![CDATA[
 			Catches code where parameters are not used. May have false positives
 			in the presence of mixin statements.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.syntax</key>
-		<name>Syntax Warnings</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.syntax</key>
+        <name>Syntax Warnings</name>
+        <description><![CDATA[
 			Misc. sytnax warnings detected by the parser.
 		]]></description>
-		<severity>MAJOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.confusing.logical_precedence</key>
-		<name>Confusing Logical Operator Precedence</name>
-		<description><![CDATA[
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.confusing.logical_precedence</key>
+        <name>Confusing Logical Operator Precedence</name>
+        <description><![CDATA[
 			Checks for code where parenthesis should be used to clarify && and || expressions.
 			"a && b || c" parses as "(a && b) || c", though the code may have meant to be "a && (b || c)".
 		]]></description>
-		<severity>MAJOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.style.undocumented_declaration</key>
-		<name>Undocumented Public Symbols</name>
-		<description><![CDATA[
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.style.undocumented_declaration</key>
+        <name>Undocumented Public Symbols</name>
+        <description><![CDATA[
 			Checks for code where public declarations have no documentation comment.
 		]]></description>
-		<severity>INFO</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.confusing.function_attributes</key>
-		<name>Function Attribute Placement</name>
-		<description><![CDATA[
+        <severity>INFO</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.confusing.function_attributes</key>
+        <name>Function Attribute Placement</name>
+        <description><![CDATA[
 			Prefer <code>int getStuff() const {}</code> to <code>const int getStuff() {}</code>
 		]]></description>
-		<severity>INFO</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.comma_expression</key>
-		<name>Comma Expression</name>
-		<description><![CDATA[
+        <severity>INFO</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.comma_expression</key>
+        <name>Comma Expression</name>
+        <description><![CDATA[
 			The comma expression is confusing. Avoid its use.
 		]]></description>
-		<severity>INFO</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.local_imports</key>
-		<name>Local Imports</name>
-		<description><![CDATA[
+        <severity>INFO</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.local_imports</key>
+        <name>Local Imports</name>
+        <description><![CDATA[
 			Non-selective local imports can cause symbols from the imported
 			module to shadow symbols in the local scope with no warning. Use a
 			selective import to avoid this. See <a href="http://forum.dlang.org/thread/lvsegb$8cf$1@digitalmars.com">
 			this forum thread</a> for details.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.unmodified</key>
-		<name>Could be Immutable</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.unmodified</key>
+        <name>Could be Immutable</name>
+        <description><![CDATA[
 			Checks for unmodified variables that could have been declared 'const' or
 			'immutable'.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.redundant_parens</key>
-		<name>Redundant Parenthesis</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.redundant_parens</key>
+        <name>Redundant Parenthesis</name>
+        <description><![CDATA[
 			Checks for redundant parenthesis.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.confusing.argument_parameter_mismatch</key>
-		<name>Mismatched Function Arguments</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.confusing.argument_parameter_mismatch</key>
+        <name>Mismatched Function Arguments</name>
+        <description><![CDATA[
 			Checks for arguments whose name matches a parameter, but is not in the same place in the argument list
 			that it is in the parameter list. For example: <code> int doStuff(int a, int b); int a, b; doStuff(b, a);</code>
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.label_var_same_name</key>
-		<name>Labels Sharing Variable Names</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.label_var_same_name</key>
+        <name>Labels Sharing Variable Names</name>
+        <description><![CDATA[
 			Checks for labels that have the same name as variables.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.style.long_line</key>
-		<name>Long Lines</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.style.long_line</key>
+        <name>Long Lines</name>
+        <description><![CDATA[
 			Checks for long lines.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.confusing.lambda_returns_lambda</key>
-		<name>Confusing Lambda Return</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.confusing.lambda_returns_lambda</key>
+        <name>Confusing Lambda Return</name>
+        <description><![CDATA[
 			Checks for lambdas that accidentally return a lambda instead of a value.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.auto_ref_assignment</key>
-		<name>Auto-ref Parameter Assignment</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.auto_ref_assignment</key>
+        <name>Auto-ref Parameter Assignment</name>
+        <description><![CDATA[
 			Checks for assignments to auto-ref function parameters.
 		]]></description>
-		<severity>MAJOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.style.alias_syntax</key>
-		<name>Deprecated Alias Syntax</name>
-		<description><![CDATA[
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.style.alias_syntax</key>
+        <name>Deprecated Alias Syntax</name>
+        <description><![CDATA[
 			Checks for use of the deprecated alias declaration syntax.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.useless_assert</key>
-		<name>Useless Assert</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.useless_assert</key>
+        <name>Useless Assert</name>
+        <description><![CDATA[
 			Checks for asserts that always succeed.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.incorrect_infinite_range</key>
-		<name>Incorrect Infinite Range Definition</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.incorrect_infinite_range</key>
+        <name>Incorrect Infinite Range Definition</name>
+        <description><![CDATA[
 			Checks for incorrect infinite range definitions.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.suspicious.static_if_else</key>
-		<name>Confusing Static-If Else</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.static_if_else</key>
+        <name>Confusing Static-If Else</name>
+        <description><![CDATA[
 			Checks for potentially mistaken static if / else if.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<key>dscanner.style.explicitly_annotated_unittest</key>
-		<name>Explicitly annotate unit tests</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.style.explicitly_annotated_unittest</key>
+        <name>Explicitly annotate unit tests</name>
+        <description><![CDATA[
 			Checks that unit tests are explicitly annotated as @safe or @system.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<name>dscanner.confusing.constructor_args</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.confusing.constructor_args</key>
+		<name>Constructor arguments check</name>
+        <description><![CDATA[
 			Checks for aggregate types that have both a zero-argument constructor and a constructor with one default argument.
 		]]></description>
-		<severity>INFO</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<name>dscanner.style.imports_sortedness</name>
-		<description><![CDATA[
+        <severity>INFO</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.style.imports_sortedness</key>
+		<name>Import sorting check</name>
+        <description><![CDATA[
 			Checks that imports are sorted alphabetically.
 		]]></description>
-		<severity>MINOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<name>dscanner.suspicious.missing_return</name>
-		<description><![CDATA[
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.missing_return</key>
+		<name>Missing return check</name>
+        <description><![CDATA[
 			Checks that functions that return auto have a return statement.
 		]]></description>
-		<severity>MAJOR</severity>
-		<status>BETA</status>
-	</rule>
-	<rule>
-		<name>dscanner.confusing.brexp</name>
-		<description><![CDATA[
-			Checks for confusing ASM syntax.
-		]]></description>
-		<severity>INFO</severity>
-		<status>BETA</status>
-	</rule>
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
 </rules>
