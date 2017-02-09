@@ -353,4 +353,45 @@
 		<severity>MINOR</severity>
 		<status>BETA</status>
 	</rule>
+	<rule>
+		<key>dscanner.style.explicitly_annotated_unittest</key>
+		<name>Explicitly annotate unit tests</name>
+		<description><![CDATA[
+			Checks that unit tests are explicitly annotated as @safe or @system.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<name>dscanner.confusing.constructor_args</name>
+		<description><![CDATA[
+			Checks for aggregate types that have both a zero-argument constructor and a constructor with one default argument.
+		]]></description>
+		<severity>INFO</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<name>dscanner.style.imports_sortedness</name>
+		<description><![CDATA[
+			Checks that imports are sorted alphabetically.
+		]]></description>
+		<severity>MINOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<name>dscanner.suspicious.missing_return</name>
+		<description><![CDATA[
+			Checks that functions that return auto have a return statement.
+		]]></description>
+		<severity>MAJOR</severity>
+		<status>BETA</status>
+	</rule>
+	<rule>
+		<name>dscanner.confusing.brexp</name>
+		<description><![CDATA[
+			Checks for confusing ASM syntax.
+		]]></description>
+		<severity>INFO</severity>
+		<status>BETA</status>
+	</rule>
 </rules>
