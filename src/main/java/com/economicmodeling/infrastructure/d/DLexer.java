@@ -19,16 +19,12 @@
 
 package com.economicmodeling.infrastructure.d;
 
+import java.nio.charset.Charset;
+
 import com.sonar.sslr.impl.Lexer;
 import com.sonar.sslr.impl.channel.*;
 
-import static com.sonar.sslr.impl.channel.RegexpChannelBuilder.commentRegexp;
-import static com.sonar.sslr.impl.channel.RegexpChannelBuilder.o2n;
-import static com.sonar.sslr.impl.channel.RegexpChannelBuilder.opt;
-import static com.sonar.sslr.impl.channel.RegexpChannelBuilder.or;
-import static com.sonar.sslr.impl.channel.RegexpChannelBuilder.regexp;
-import static com.sonar.sslr.impl.channel.RegexpChannelBuilder.g;
-import java.nio.charset.Charset;
+import static com.sonar.sslr.impl.channel.RegexpChannelBuilder.*;
 
 /**
  * @author Brian Schott
@@ -42,7 +38,6 @@ public final class DLexer {
     private static final String HEX_DIGITS = "[0-9a-fA-F_]++";
     private static final String HEX_PREFIX = "0[x|X]";
     private static final String BINARY_DIGITS = "[01_]++";
-    private static final String STRING_SUFFIX = "[cwd]";
     private static final String DECIMAL_EXPONENT = "[eE]" + opt("[-+]?") + DECIMAL_DIGITS;
     private static final String HEX_EXPONENT = "[pP][-+]?" + DECIMAL_DIGITS;
     private static final String INTEGER_SUFFIX = "u|uL|U|UL|L|Lu|LU";
