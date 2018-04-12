@@ -430,4 +430,14 @@
         <cardinality>SINGLE</cardinality>
         <status>BETA</status>
     </rule>
+	<rule>
+        <key>dscanner.useless-initializer</key>
+		<name>Useless initializer check</name>
+        <description><![CDATA[
+			Checks initializer not useless.
+		]]></description>
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
 </rules>
