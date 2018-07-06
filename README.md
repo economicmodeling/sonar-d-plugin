@@ -8,8 +8,8 @@ SonarQube plugin for the D programming language
 * A JDK
 * [Maven 3](http://maven.apache.org/download.cgi)
 * [D Scanner](https://github.com/Hackerpilot/Dscanner)
-* [SonarQube](http://www.sonarqube.org/downloads/) (Only tested with 4.4)
-* [SonarQube Runner](http://www.sonarqube.org/downloads/) (Only tested with 2.4)
+* [SonarQube](http://www.sonarqube.org/downloads/) (Tested with 6.7.1)
+* [SonarQube Scanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner) (Tested with 3.2)
 
 ### Instructions
 * Run ```mvn clean install``` in the sonar-d-plugin directory. This will compile

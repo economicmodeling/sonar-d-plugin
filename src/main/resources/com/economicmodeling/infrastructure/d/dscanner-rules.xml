@@ -440,4 +440,24 @@
         <cardinality>SINGLE</cardinality>
         <status>BETA</status>
     </rule>
+    <rule>
+        <key>dscanner.vcall_ctor</key>
+        <name>Virtual call inside a constructor</name>
+        <description><![CDATA[
+            Checks that constructors not have virtual calls.
+        ]]></description>
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+	<rule>
+        <key>dscanner.useless.final</key>
+        <name>Useless final check</name>
+        <description><![CDATA[
+            Checks that final attributes are not useless.
+        ]]></description>
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
 </rules>
