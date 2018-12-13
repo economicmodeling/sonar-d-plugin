@@ -460,4 +460,24 @@
         <cardinality>SINGLE</cardinality>
         <status>BETA</status>
     </rule>
+    <rule>
+        <key>dscanner.trust_too_much</key>
+        <name>Whole scope is @trusted check</name>
+        <description><![CDATA[
+            Checks that @trusted is attached to functions individually.
+        ]]></description>
+        <severity>MAJOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
+    <rule>
+        <key>dscanner.suspicious.redundant_attributes</key>
+        <name>Redundant attributes check</name>
+        <description><![CDATA[
+            Checks that same visibility attribute is not used redundantly.
+        ]]></description>
+        <severity>MINOR</severity>
+        <cardinality>SINGLE</cardinality>
+        <status>BETA</status>
+    </rule>
 </rules>
